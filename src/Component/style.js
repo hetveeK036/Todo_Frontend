@@ -56,32 +56,73 @@ const useStyles = makeStyles(() => ({
     textAlign: "center",
     padding: "15px",
   },
-  todo: {
-    padding: "10px",
-  },
-  // todo Items
-  todoItem: {
-    display: "flex",
-    justifyContent: "space-between",
-    padding: "5px",
-    marginInline: "auto",
-    marginBlock: "5px",
-    borderBottom: "1px solid black",
-    position: "relative",
-  },
-  buttonContainer: {
-    display: "flex",
-    position: "absolute",
-    // justifyContent: 'space-around',
-    gap: "10px",
-    right: "1%",
-  },
+  // todo: {
+  //   padding: "10px",
+  // },
+  // // todo Items
+  // todoItem: {
+  //   display: "flex",
+  //   justifyContent: "space-between",
+  //   padding: "5px",
+  //   marginInline: "auto",
+  //   marginBlock: "5px",
+  //   borderBottom: "1px solid black",
+  //   position: "relative",
+  // },
+  // buttonContainer: {
+  //   display: "flex",
+  //   position: "absolute",
+  //   // justifyContent: 'space-around',
+  //   gap: "10px",
+  //   right: "1%",
+  // },
 
-  // Style for checked items
-  checkedText: {
-    textDecoration: "line-through",
-    textDecorationColor: "red", // flex: 1,
-  },
+  // // Style for checked items
+  // checkedText: {
+  //   padding:'10px',
+  //   height: '44px !important',
+  //   textDecoration: "line-through",
+  //   textDecorationColor: "red", // flex: 1,
+  // },
+      todoItem: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        border: '1px solid lightgray',
+        alignItems: 'center',
+        borderRadius: '10px',
+        width: '90%',
+        padding: '15px',
+        // margin: '5px',
+        marginInline: 'auto',
+        marginBlock: '5px',
+    },
+    checkedItem: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        border: '1px solid green',  // Change border color when checked
+        backgroundColor: '#e0ffe0',  // Change background color when checked
+        alignItems: 'center',
+        borderRadius: '10px',
+        width: '90%',
+        padding: '15px',
+        // margin: '5px',
+        marginInline: 'auto',
+        marginBlock: '5px',
+    },
+    todo: {
+        // Default style for the todo text
+        flex: 1,
+    },
+    checkedText: {
+        textDecoration: 'line-through', // Line through when checked
+        textDecorationColor: "red", 
+        flex: 1,
+    },
+    buttonContainer: {
+        display: 'flex',
+        gap: '10px',
+        right: '1%',
+    },
 }));
 
 export default useStyles;

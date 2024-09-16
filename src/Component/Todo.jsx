@@ -1,7 +1,8 @@
 import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import useStyles from './style';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TodoItem from "./TodoItem";
+import { getTask, updateTask, deleteTask, addTask } from './TodoServices';
 
 const Todo = () => {
     const classes = useStyles();
@@ -14,18 +15,54 @@ const Todo = () => {
         console.log('input Value : ', inputValue);
     };
 
+    useEffect(() =>
+         {
+            const fetchTask = async() => {
+                try {
+                    const tasks = await getTask();
+                    setTask(tasks);
+                } 
+                catch (error){
+                    console.error('Failed to fetch tasks  F:', error);
+                }
+            };
+            fetchTask();
+    }, []);
+
     // Handle adding a new task
-    const handleAddTask = (e) => {
+    const handleAddTask = async(e) => {
         e.preventDefault();
         if (inputValue.trim()) { // Ensure input is not empty or just spaces
-            setTask([...task, inputValue]); // Add the new task to the list
-            setInputValue(''); // Clear the input field after adding
+           try{
+            const newTask = await addTask({name: inputValue, completed: false});
+            //    setTask([...task, inputValue]); // Add the new task to the list
+               setTask([...task, newTask]); // Add the new task to the list
+               setInputValue(''); // Clear the input field after adding
+           } catch(error){
+            console.error(' Failed to add task  F:', error);
+           }
         }
     };
 
+    // handle for completed task
+    const handleComplete = async (task) => {
+        try {
+            const updatedTask = await updateTask(task.id, { completed: !task.completed });
+            setTask(task.map(t => t.id === task.id ? updatedTask : t));
+        } catch (error) {
+            console.error('Failed to update task:', error);
+        }
+    };
     // Handle deleting a task
-    const handleDelete = (taskToDelete) => {
-        setTask(task.filter(todo => todo !== taskToDelete)); // Filter out the task to be deleted
+    const handleDelete = async(taskToDelete) => {
+        // setTask(task.filter(todo => todo !== taskToDelete)); // Filter out the task to be deleted
+        try {
+            await deleteTask(taskToDelete.id) // pass task id for deletion
+            setTask(task.filter(todo => todo.id !== taskToDelete.id));
+        } catch (error) {
+            console.error('Failed to Delete TAsk F:', error);
+            
+        }
         console.log("Deleted Task :", taskToDelete)
     };
 
@@ -55,6 +92,7 @@ const Todo = () => {
                                 key={index} 
                                 todo={todo} 
                                 onDelete={handleDelete} 
+                                onComplete = {handleComplete}
                             />
                         ))}
                     </Box>
