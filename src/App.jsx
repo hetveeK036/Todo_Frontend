@@ -1,13 +1,14 @@
-import Todo from "./Component/Todo"
-
+import Todo from "./Component/Todo";
+import ErrorBoundary from "./errorBoundary/errorBoundary";
 
 const App = () => {
   return (
-    <div>
-        <Todo/>
-        
-    </div>
-  )
-}
+    <>
+      <ErrorBoundary>
+        <Todo />
+      </ErrorBoundary>
+    </>
+  );
+};
 
-export default App
+export default App;

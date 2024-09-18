@@ -56,34 +56,8 @@ const useStyles = makeStyles(() => ({
     textAlign: "center",
     padding: "15px",
   },
-  // todo: {
-  //   padding: "10px",
-  // },
-  // // todo Items
-  // todoItem: {
-  //   display: "flex",
-  //   justifyContent: "space-between",
-  //   padding: "5px",
-  //   marginInline: "auto",
-  //   marginBlock: "5px",
-  //   borderBottom: "1px solid black",
-  //   position: "relative",
-  // },
-  // buttonContainer: {
-  //   display: "flex",
-  //   position: "absolute",
-  //   // justifyContent: 'space-around',
-  //   gap: "10px",
-  //   right: "1%",
-  // },
 
-  // // Style for checked items
-  // checkedText: {
-  //   padding:'10px',
-  //   height: '44px !important',
-  //   textDecoration: "line-through",
-  //   textDecorationColor: "red", // flex: 1,
-  // },
+// todo Items
       todoItem: {
         display: 'flex',
         justifyContent: 'space-between',
