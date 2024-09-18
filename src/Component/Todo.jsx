@@ -2,7 +2,7 @@ import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import useStyles from "./style";
 import { useEffect, useState } from "react";
 import TodoItem from "./TodoItem";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { getTask, updateTask, deleteTask, addTask } from "./TodoServices";
 
 const Todo = () => {
@@ -21,6 +21,8 @@ const Todo = () => {
       try {
         const tasks = await getTask();
         setTask(tasks);
+        console.log("Fetched tasks:", tasks);
+        setTask(Array.isArray(tasks) ? tasks : []);
       } catch (error) {
         console.log("Failed to fetch tasks  F:", error);
       }
@@ -45,18 +47,33 @@ const Todo = () => {
   };
 
   // handle for completed task
-  const handleComplete = async (task) => {
+  //   const handleComplete = async (task) => {
+  //     try {
+  //       const updatedTask = await updateTask(task.id, {
+  //         task: task.task,
+  //         completed: !task.completed,
+  //       });
+
+  //       //updated state with updated task
+  //         setTask(task.map((t) => (t.id === task.id ? updatedTask : t)));
+  //     //   setTask((prevTask) => {
+  //     //     prevTask.map((t) => (t.id === task.id ? updatedTask : t));
+  //     //   });
+  //     } catch (error) {
+  //       console.error("Failed to update task:", error);
+  //     }
+  //   };
+
+  const handleComplete = async (taskToUpdate) => {
     try {
-      const updatedTask = await updateTask(task.id, {
-        task: task.task,
-        completed: !task.completed,
+      const updatedTask = await updateTask(taskToUpdate.id, {
+        task: taskToUpdate.task,
+        completed: !taskToUpdate.completed,
       });
 
-      //updated state with updated task
-      //   setTask(task.map((t) => (t.id === task.id ? updatedTask : t)));
-      setTask((prevTask) => {
-        prevTask.map((t) => (t.id === task.id ? updatedTask : t));
-      });
+      setTask((prevTasks) =>
+        prevTasks.map((t) => (t.id === taskToUpdate.id ? updatedTask : t))
+      );
     } catch (error) {
       console.error("Failed to update task:", error);
     }
@@ -117,10 +134,9 @@ const Todo = () => {
   );
 };
 
-Todo.prototype = {
-  task: PropTypes.string.isRequired,
-  completed: PropTypes.bool.isRequired,
-};
-
+// Todo.prototype = {
+//   task: PropTypes.string.isRequired,
+//   completed: PropTypes.bool.isRequired,
+// };
 
 export default Todo;
