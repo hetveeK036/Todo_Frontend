@@ -59,10 +59,12 @@ export const updateTask = async (id, updatedTask) => {
     return await response.json();
   }  
   } catch(error) {
-    console.log('error while updating task :', error);
+    console.log('error while updating task  :', error);
     throw error;
   }
 };
+
+
 
 
 export const deleteTask = async (id) => {

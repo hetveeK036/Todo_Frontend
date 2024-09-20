@@ -20,9 +20,9 @@ const Todo = () => {
     const fetchTask = async () => {
       try {
         const tasks = await getTask();
-        setTask(tasks);
         console.log("Fetched tasks:", tasks);
-        setTask(Array.isArray(tasks) ? tasks : []);
+        setTask(tasks);
+        // setTask(Array.isArray(tasks) ? tasks : []);
       } catch (error) {
         console.log("Failed to fetch tasks  F:", error);
       }
@@ -47,32 +47,50 @@ const Todo = () => {
   };
 
   // handle for completed task
-  //   const handleComplete = async (task) => {
-  //     try {
-  //       const updatedTask = await updateTask(task.id, {
-  //         task: task.task,
-  //         completed: !task.completed,
-  //       });
+//   const handleComplete = async (task) => {
+//     try {
+//       const updatedTask = await updateTask(task.id, {
+//         task: task.task,
+//         completed: !task.completed,
+//       });
 
-  //       //updated state with updated task
-  //         setTask(task.map((t) => (t.id === task.id ? updatedTask : t)));
-  //     //   setTask((prevTask) => {
-  //     //     prevTask.map((t) => (t.id === task.id ? updatedTask : t));
-  //     //   });
-  //     } catch (error) {
-  //       console.error("Failed to update task:", error);
-  //     }
-  //   };
+//       //updated state with updated task
+//         setTask(task.map((t) => (t.id === task.id ? updatedTask : t)));
+//     //   setTask((prevTask) => {
+//     //     prevTask.map((t) => (t.id === task.id ? updatedTask : t));
+//     //   });
+//     } catch (error) {
+//       console.error("Failed to update task:", error);
+//     }
+//   };
 
-  const handleComplete = async (taskToUpdate) => {
+// const handleComplete = async (taskToUpdate) => {
+//     try {
+//         const updatedTask = await updateTask(taskToUpdate.id, {
+//             task: taskToUpdate.task,
+//             completed: !taskToUpdate.completed,
+//           });
+
+//       setTask((prevTasks) => 
+//         prevTasks.map((t) => (t.id === taskToUpdate.id ? updatedTask : t))
+//       );
+//     } catch (error) {
+//       console.error("Failed to update task:", error);
+//     }
+//   };
+
+const handleComplete = async (taskToUpdate) => {
+    const updatedTask = {
+      task: taskToUpdate.task,
+      completed: !taskToUpdate.completed,
+    };
+    
+    console.log('Updating task:', taskToUpdate.id, updatedTask);
+  
     try {
-      const updatedTask = await updateTask(taskToUpdate.id, {
-        task: taskToUpdate.task,
-        completed: !taskToUpdate.completed,
-      });
-
+      const response = await updateTask(taskToUpdate.id, updatedTask);
       setTask((prevTasks) =>
-        prevTasks.map((t) => (t.id === taskToUpdate.id ? updatedTask : t))
+        prevTasks.map((t) => (t.id === taskToUpdate.id ? response : t))
       );
     } catch (error) {
       console.error("Failed to update task:", error);
@@ -118,10 +136,10 @@ const Todo = () => {
             className={classes.todoList}
             // sx={{marginTop:'10%'}}
           >
-            {task.map((todo, index) => (
+            {task.map((todo) => (
               <TodoItem
                 // className={classes.todoItems}
-                key={index}
+                key={todo.id}
                 todo={todo}
                 onDelete={handleDelete}
                 onComplete={handleComplete}
@@ -138,5 +156,6 @@ const Todo = () => {
 //   task: PropTypes.string.isRequired,
 //   completed: PropTypes.bool.isRequired,
 // };
+
 
 export default Todo;
