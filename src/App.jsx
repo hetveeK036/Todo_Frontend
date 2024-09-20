@@ -5,6 +5,7 @@ const App = () => {
   return (
     <>
       <ErrorBoundary>
+        <h1> Hello Guys !</h1>
         <Todo />
       </ErrorBoundary>
     </>
