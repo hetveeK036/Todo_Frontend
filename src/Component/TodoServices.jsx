@@ -1,5 +1,8 @@
 const API_URL = "http://localhost:8080/todos";
+// const API_URL = process.env.REACT_APP_TODO_API_URL;
 
+
+//Get Task from Database
 export const getTask = async () => {
   try {
     const response = await fetch(API_URL);
@@ -11,6 +14,7 @@ export const getTask = async () => {
   }
 };
 
+//Add Task
 export const addTask = async (task) => {
   try {
     const response = await fetch(API_URL, {
@@ -28,21 +32,7 @@ export const addTask = async (task) => {
   }
 };
 
-// export const updateTask = async (id, updatedTask) => {
-//   try {
-//     const response = await fetch(`${API_URL}/${id}`, {
-//       method: "PUT",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify(updatedTask),
-//     });
-//     if (!response.ok) throw new Error("Failed to update task");
-//     return await response.json();
-//   } catch (error) {
-//     console.error("Error while updating task:", error);
-//     throw error;
-//   }
-// };
-
+//update Task
 export const updateTask = async (id, updatedTask) => {
   try{
   const response = await fetch(`http://localhost:8080/todos/${id}`, {
@@ -64,9 +54,7 @@ export const updateTask = async (id, updatedTask) => {
   }
 };
 
-
-
-
+//Delete TAsk
 export const deleteTask = async (id) => {
   try {
     const response = await fetch(`${API_URL}/${id}`, {

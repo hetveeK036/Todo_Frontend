@@ -18,14 +18,27 @@ const useStyles = makeStyles(() => ({
       border: "1px solid lightgray",
       alignItems: "center",
       borderRadius: "10px",
-      width: "70%",
+      width: {
+        xs: 100,   //0
+        sm: 200,  // 600
+        md: 300,  //900
+        lg: 400,  //1200
+        xl: 500,  //1536
+      },
       padding: "15px",
       margin: "5px",
     },
     //add button
     "& .css-142372x-MuiButtonBase-root-MuiButton-root": {
       height: "45px",
-      width: "10%",
+      // width: "10%",
+      width: {
+        xs: 100,   //0
+        sm: 200,  // 600
+        md: 300,  //900
+        lg: 400,  //1200
+        xl: 500,  //1536
+      },
       marginLeft: "10px",
       fontSize: "16px",
     },
@@ -37,11 +50,17 @@ const useStyles = makeStyles(() => ({
     //input field
     "& .css-1u3bzj6-MuiFormControl-root-MuiTextField-root": {
       width: "50%",
-      height: "40px",
+      // width: {
+      //   xs: 100,   //0
+      //   sm: 200,  // 600
+      //   md: 300,  //900
+      //   lg: 400,  //1200
+      //   xl: 500,  //1536
+      // },
       marginBottom: "10px",
 
       "& .css-j882ge-MuiInputBase-root-MuiOutlinedInput-root": {
-        height: "50px",
+        height: "50px", // it's not necessary when u write size = 'small' in textfield 
       },
     },
   },
@@ -53,7 +72,14 @@ const useStyles = makeStyles(() => ({
     margin: "auto",
     marginTop: "15px",
     width: "60%",
-    textAlign: "center",
+    // width: {
+    //   xs: 100,   //0
+    //   sm: 200,  // 600
+    //   md: 300,  //900
+    //   lg: 400,  //1200
+    //   xl: 500,  //1536
+    // },
+    textAlign: "left",
     padding: "15px",
   },
 
@@ -82,6 +108,7 @@ const useStyles = makeStyles(() => ({
         // margin: '5px',
         marginInline: 'auto',
         marginBlock: '5px',
+        flexDirection: {}
     },
     todo: {
         // Default style for the todo text

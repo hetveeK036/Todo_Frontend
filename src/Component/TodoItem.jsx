@@ -1,7 +1,7 @@
 import { Typography, Button, Box } from "@mui/material";
 import useStyles from "./style";
 import { useState } from "react";
-import  PropTypes  from "prop-types";
+import PropTypes from "prop-types";
 
 // import {todo,onComplete, onDelete} from './Todo'
 
@@ -17,7 +17,10 @@ const TodoItem = ({ todo, onComplete, onDelete }) => {
 
   // Assuming `todo` is an object, access a property like `todo.text`
   return (
-    <Box className={isChecked ? classes.checkedItem : classes.todoItem}>
+    <Box
+      className={isChecked ? classes.checkedItem : classes.todoItem}
+      sx={{ flexDirection: { xs: "column", md: "row" } }}
+    >
       <Typography
         variant="body1"
         className={isChecked ? classes.checkedText : classes.todo}
@@ -26,7 +29,9 @@ const TodoItem = ({ todo, onComplete, onDelete }) => {
         {/* /*  add css for text write in left hand side  *\ */}
         {todo.task}
       </Typography>
-      <Box className={classes.buttonContainer}>
+      <Box
+        className={classes.buttonContainer}
+      >
         <Button
           variant="contained"
           color="success"
@@ -46,15 +51,13 @@ const TodoItem = ({ todo, onComplete, onDelete }) => {
   );
 };
 
-
 TodoItem.propTypes = {
-    todo: PropTypes.shape({
-      task: PropTypes.string.isRequired,
-      completed: PropTypes.bool.isRequired,
-    }).isRequired,
-    onComplete: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired,
-  };
-  
+  todo: PropTypes.shape({
+    task: PropTypes.string.isRequired,
+    completed: PropTypes.bool.isRequired,
+  }).isRequired,
+  onComplete: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+};
 
 export default TodoItem;

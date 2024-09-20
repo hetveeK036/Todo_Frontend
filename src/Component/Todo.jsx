@@ -121,6 +121,7 @@ const handleComplete = async (taskToUpdate) => {
             label="Task"
             variant="outlined"
             placeholder="Enter your Task"
+            size="small"
             // sx={{ width: '40%', height: '10px', padding: '10px' , borderRadius: '10px' }}
             onChange={handleChange}
             value={inputValue}
