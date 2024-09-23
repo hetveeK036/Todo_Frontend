@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import TodoItem from "./TodoItem";
 // import PropTypes from "prop-types";
 import { getTask, updateTask, deleteTask, addTask } from "./TodoServices";
+import PropTypes from "prop-types";
 
 const Todo = () => {
   const classes = useStyles();
@@ -47,46 +48,30 @@ const Todo = () => {
   };
 
   // handle for completed task
-//   const handleComplete = async (task) => {
-//     try {
-//       const updatedTask = await updateTask(task.id, {
-//         task: task.task,
-//         completed: !task.completed,
-//       });
 
-//       //updated state with updated task
-//         setTask(task.map((t) => (t.id === task.id ? updatedTask : t)));
-//     //   setTask((prevTask) => {
-//     //     prevTask.map((t) => (t.id === task.id ? updatedTask : t));
-//     //   });
-//     } catch (error) {
-//       console.error("Failed to update task:", error);
-//     }
-//   };
+ /* const handleComplete = async (taskToUpdate) => {
+      try {
+          const updatedTask = await updateTask(taskToUpdate.id, {
+              task: taskToUpdate.task,
+              completed: !taskToUpdate.completed,
+            });
 
-// const handleComplete = async (taskToUpdate) => {
-//     try {
-//         const updatedTask = await updateTask(taskToUpdate.id, {
-//             task: taskToUpdate.task,
-//             completed: !taskToUpdate.completed,
-//           });
+        setTask((prevTasks) =>
+          prevTasks.map((t) => (t.id === taskToUpdate.id ? updatedTask : t))
+        );
+      } catch (error) {
+        console.error("Failed to update task:", error);
+      }
+    }; */
 
-//       setTask((prevTasks) => 
-//         prevTasks.map((t) => (t.id === taskToUpdate.id ? updatedTask : t))
-//       );
-//     } catch (error) {
-//       console.error("Failed to update task:", error);
-//     }
-//   };
-
-const handleComplete = async (taskToUpdate) => {
+  const handleComplete = async (taskToUpdate) => {
     const updatedTask = {
       task: taskToUpdate.task,
       completed: !taskToUpdate.completed,
     };
-    
-    console.log('Updating task:', taskToUpdate.id, updatedTask);
-  
+
+    console.log("Updating task:", taskToUpdate.id, updatedTask);
+
     try {
       const response = await updateTask(taskToUpdate.id, updatedTask);
       setTask((prevTasks) =>
@@ -96,6 +81,7 @@ const handleComplete = async (taskToUpdate) => {
       console.error("Failed to update task:", error);
     }
   };
+
   // Handle deleting a task
   const handleDelete = async (taskToDelete) => {
     // setTask(task.filter(todo => todo !== taskToDelete)); // Filter out the task to be deleted
@@ -153,10 +139,9 @@ const handleComplete = async (taskToUpdate) => {
   );
 };
 
-// Todo.prototype = {
-//   task: PropTypes.string.isRequired,
-//   completed: PropTypes.bool.isRequired,
-// };
-
+Todo.prototype = {
+  task: PropTypes.string.isRequired,
+  completed: PropTypes.bool.isRequired,
+};
 
 export default Todo;
