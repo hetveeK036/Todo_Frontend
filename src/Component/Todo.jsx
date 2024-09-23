@@ -48,30 +48,12 @@ const Todo = () => {
   };
 
   // handle for completed task
-
- /* const handleComplete = async (taskToUpdate) => {
-      try {
-          const updatedTask = await updateTask(taskToUpdate.id, {
-              task: taskToUpdate.task,
-              completed: !taskToUpdate.completed,
-            });
-
-        setTask((prevTasks) =>
-          prevTasks.map((t) => (t.id === taskToUpdate.id ? updatedTask : t))
-        );
-      } catch (error) {
-        console.error("Failed to update task:", error);
-      }
-    }; */
-
   const handleComplete = async (taskToUpdate) => {
     const updatedTask = {
       task: taskToUpdate.task,
       completed: !taskToUpdate.completed,
     };
-
     console.log("Updating task:", taskToUpdate.id, updatedTask);
-
     try {
       const response = await updateTask(taskToUpdate.id, updatedTask);
       setTask((prevTasks) =>
@@ -108,7 +90,6 @@ const Todo = () => {
             variant="outlined"
             placeholder="Enter your Task"
             size="small"
-            // sx={{ width: '40%', height: '10px', padding: '10px' , borderRadius: '10px' }}
             onChange={handleChange}
             value={inputValue}
           />
@@ -120,12 +101,9 @@ const Todo = () => {
             Add Task
           </Button>
           <Box
-            className={classes.todoList}
-            // sx={{marginTop:'10%'}}
-          >
+            className={classes.todoList}>
             {task.map((todo) => (
               <TodoItem
-                // className={classes.todoItems}
                 key={todo.id}
                 todo={todo}
                 onDelete={handleDelete}

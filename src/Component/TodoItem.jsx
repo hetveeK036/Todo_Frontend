@@ -3,11 +3,8 @@ import useStyles from "./style";
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-// import {todo,onComplete, onDelete} from './Todo'
-
 const TodoItem = ({ todo, onComplete, onDelete }) => {
   const classes = useStyles();
-
   const [isChecked, setIsChecked] = useState(todo.completed); // handle check button
 
   const handleCheck = (t) => {
@@ -23,15 +20,11 @@ const TodoItem = ({ todo, onComplete, onDelete }) => {
     >
       <Typography
         variant="body1"
-        className={isChecked ? classes.checkedText : classes.todo}
-        // style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}s
-      >
+        className={isChecked ? classes.checkedText : classes.todo} >
         {/* /*  add css for text write in left hand side  *\ */}
         {todo.task}
       </Typography>
-      <Box
-        className={classes.buttonContainer}
-      >
+      <Box className={classes.buttonContainer}>
         <Button
           variant="contained"
           color="success"

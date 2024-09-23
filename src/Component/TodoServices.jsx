@@ -1,7 +1,5 @@
-// const API_URL = "http://localhost:8080/todos";
 const API_URL = import.meta.env.VITE_TODO_API_URL;
 console.log(API_URL)
-
 
 //Get Task from Database
 export const getTask = async () => {
